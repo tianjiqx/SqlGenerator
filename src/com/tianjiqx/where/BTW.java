@@ -1,4 +1,4 @@
-package com.tianjiqx.where;
+ï»¿package com.tianjiqx.where;
 
 import java.util.ArrayList;
 
@@ -6,9 +6,9 @@ import com.tianjiqx.table.Column;
 import com.tianjiqx.table.Table;
 
 //#################################
-//# Ä£¿éËµÃ÷£º
-//# ¹¦ÄÜ£ºÉú³Ébetween and±í´ïÊ½
-//# ×÷Õß£ºquxing
+//# æ¨¡å—è¯´æ˜ï¼š
+//# åŠŸèƒ½ï¼šç”Ÿæˆbetween andè¡¨è¾¾å¼
+//# ä½œè€…ï¼šquxing
 //# email: tianjiqx@126.com
 //#################################
 public class BTW implements Expr {

@@ -1,4 +1,4 @@
-package com.tianjiqx.where;
+Ôªøpackage com.tianjiqx.where;
 
 import java.util.ArrayList;
 
@@ -10,9 +10,9 @@ import com.tianjiqx.util.RandSelect;
 import com.tianjiqx.util.StringCombine;
 
 //#################################
-//# ƒ£øÈÀµ√˜£∫
-//# π¶ƒ‹£∫…˙≥…or±Ì¥Ô Ω
-//# ◊˜’ﬂ£∫quxing
+//# Ê®°ÂùóËØ¥ÊòéÔºö
+//# ÂäüËÉΩÔºöÁîüÊàêorË°®ËææÂºè
+//# ‰ΩúËÄÖÔºöquxing
 //# email: tianjiqx@126.com
 //#################################
 public class OR {
@@ -24,58 +24,68 @@ public class OR {
 		list.addAll(generateTwoOr(expr));
 		list.addAll(generateThreeOr(expr));
 		
-		//ÀÊª˙≥È»°
+		//ÈöèÊú∫ÊäΩÂèñ
 		int max=500;
 		if (list.size() > max)
 		{
 			list=RandSelect.rangSelect(list, max);
 		}
 		
+		System.out.println("generateOr sql num="+list.size());
 		return list;
 	}
 
 	
-	//¥”n∏ˆ÷–»°3∏ˆ
+	//‰ªén‰∏™‰∏≠Âèñ3‰∏™
 	public static ArrayList<String> generateThreeOr(ArrayList<String> expr) {
 		ArrayList<String> list = new ArrayList<String>();
-		//System.out.println("or3 expr size="+expr.size());
+		System.out.println("or3 expr size="+expr.size());
 		if (expr.size() <3)
 		{
 			return list;
 		}
 		//System.out.println(expr);
 
-		char[] chs = new char[expr.size()];
-
-		for (int i = 0; i < expr.size(); i++) {
-			chs[i] = (char) ('a' + i);
-		}
-		ArrayList<String> list1 = StringCombine.threeConbine(chs);
-		String str = "", tmp = "";
-		for (int i = 0; i < list1.size(); i++) {
-			str = list1.get(i);
-			tmp="( ";
-			for (int j = 0; j < str.length() - 1; j++) {
-				tmp += expr.get(str.charAt(j) - 'a') + " or ";
-			}
-			tmp += expr.get(str.charAt(str.length() - 1) - 'a')+" )";
-			list.add(tmp);
-		}
+//		char[] chs = new char[expr.size()];
+//
+//		for (int i = 0; i < expr.size(); i++) {
+//			chs[i] = (char) ('a' + i);
+//		}
+//		ArrayList<String> list1 = StringCombine.threeConbine(chs);
+//		String str = "", tmp = "";
+//		for (int i = 0; i < list1.size(); i++) {
+//			str = list1.get(i);
+//			tmp="( ";
+//			for (int j = 0; j < str.length() - 1; j++) {
+//				tmp += expr.get(str.charAt(j) - 'a') + " or ";
+//			}
+//			tmp += expr.get(str.charAt(str.length() - 1) - 'a')+" )";
+//			list.add(tmp);
+//		}
 		//System.out.println("or three size = "+list.size());
 		
-		//ÀÊª˙≥È»°
+		
+		
+		ArrayList<String> tmp = StringCombine.ThreeStringConbine(expr, " or ");
+				
+		//ÈöèÊú∫ÊäΩÂèñ
 		int max=500;
-		if (list.size() > max)
+		if (tmp.size() > max)
 		{
-			list=RandSelect.rangSelect(list, max);
+			tmp=RandSelect.rangSelect(tmp, max);
 		}
 		
+		for (int i=0;i<tmp.size();i++)
+		{
+			list.add("( "+tmp.get(i)+" )");
+		}
+		
+		System.out.println("generateThreeOr sql num="+list.size());
 		return list;
-
 	}
 	
 	
-	// ¥”n∏ˆ÷–»°2∏ˆ
+	// ‰ªén‰∏™‰∏≠Âèñ2‰∏™
 	public static ArrayList<String> generateTwoOr(ArrayList<String> expr) {
 
 		ArrayList<String> list = new ArrayList<String>();
@@ -85,33 +95,41 @@ public class OR {
 			return list;
 		}
 		
-		char[] chs = new char[expr.size()];
-
-		for (int i = 0; i < expr.size(); i++) {
-			chs[i] = (char) ('a' + i);
-		}
-		ArrayList<String> list1 = StringCombine.twoConbine(chs);
-		String str = "", tmp = "( ";
-		for (int i = 0; i < list1.size(); i++) {
-			tmp="( ";
-			str = list1.get(i);
-			for (int j = 0; j < str.length() - 1; j++) {
-				tmp += expr.get(str.charAt(j) - 'a') + " or ";
-			}
-			tmp += expr.get(str.charAt(str.length() - 1) - 'a')+" )";
-			list.add(tmp);
-		}
-
-		//System.out.println("or two size = "+list.size());
+//		char[] chs = new char[expr.size()];
+//
+//		for (int i = 0; i < expr.size(); i++) {
+//			chs[i] = (char) ('a' + i);
+//		}
+//		ArrayList<String> list1 = StringCombine.twoConbine(chs);
+//		String str = "", tmp = "( ";
+//		for (int i = 0; i < list1.size(); i++) {
+//			tmp="( ";
+//			str = list1.get(i);
+//			for (int j = 0; j < str.length() - 1; j++) {
+//				tmp += expr.get(str.charAt(j) - 'a') + " or ";
+//			}
+//			tmp += expr.get(str.charAt(str.length() - 1) - 'a')+" )";
+//			list.add(tmp);
+//		}
 		
-		//ÀÊª˙≥È»°
+		
+		ArrayList<String> tmp = StringCombine.ThreeStringConbine(expr, " or ");
+		
+
+		ArrayList<String> tmp2 = tmp;		
+		//ÈöèÊú∫ÊäΩÂèñ
 		int max=500;
-		if (list.size() > max)
+		if (tmp.size() > max)
 		{
-			list=RandSelect.rangSelect(list, max);
+			tmp=RandSelect.rangSelect(tmp, max);
+		}
+
+		for (int i=0;i<tmp.size();i++)
+		{
+			list.add("( "+tmp.get(i)+" )");
 		}
 		
-		
+		System.out.println("generateTwoOr sql num="+list.size());
 		return list;
 	}
 

@@ -1,9 +1,12 @@
 package com.tianjiqx.where;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 
 import com.tianjiqx.table.Column;
 import com.tianjiqx.table.Table;
+import com.tianjiqx.util.SelectGroupOrderRel;
 import com.tianjiqx.util.StringCombine;
 
 public class Orderby {
@@ -40,7 +43,7 @@ public class Orderby {
 				}
 			}
 		}
-		// 3��
+		// 3表
 		if (tables.length > 2) {
 			ArrayList<String> list2 = StringCombine.threeConbine(chs);
 			for (int i = 0; i < list2.size(); i++) {
@@ -81,7 +84,7 @@ public class Orderby {
 			}
 			list.addAll(list3);
 		}
-		ArrayList<String> tmp = new ArrayList<>();
+		ArrayList<String> tmp = new ArrayList<String>();
 		for (int j=0;j<list.size();j++)
 		{
 			tmp.add("Order by "+ list.get(j)+" ");
@@ -174,5 +177,105 @@ public class Orderby {
 		return list;
 	}
 
+	
+	
+	
+	//根据group　by 生成order by
+	public static ArrayList<SelectGroupOrderRel> generateOrderby2(ArrayList<SelectGroupOrderRel> groupbyList,Table [] tables) {
+		
+		ArrayList<SelectGroupOrderRel> tmpArrayList = new ArrayList<SelectGroupOrderRel>();
+		
+		for (int i=0;i<groupbyList.size();i++)
+		{
+			tmpArrayList.add(groupbyList.get(i));
+		}
+		
+		//System.out.println("groupbyList size="+tmpArrayList.size());
+		groupbyList.clear();
+		
+		for (int i =0 ;i < tmpArrayList.size();i++)
+		{
+			ArrayList<String> order_stmt= new ArrayList<String>();
+			// 处理 group by xxx,xx,
+			String tmp= tmpArrayList.get(i).grouby_stmt.split(" ")[2];
+			//1. 
+			order_stmt.add(tmp);
+			
+			//切分出所有的列
+			String [] tmpCol= tmp.split(","); 
+			
+			order_stmt.add(tmp);
+			HashSet<String> notGroupCol = new HashSet<String>();
+
+			for (int j=0; j < tables.length;j++)
+			{
+				for (int k=0;k<tmpCol.length;k++)
+				{
+					
+					if ( tmpCol[k].startsWith(tables[j].aliasName))
+					{
+						
+						String colname= tmpCol[k].split("[.]")[1];
+						boolean find=false;
+						for (int m=0;m<tables[j].cols.length;m++)
+						{
+							if (colname == tables[j].cols[m].colName)
+							{
+								find=true;
+								break;
+							}
+						}
+						if (!find){
+							notGroupCol.add(tmpCol[k]);
+						}
+					}
+				}				
+			} //end for 
+			//2.
+			String str="";
+			for (int j=0;j < tmpCol.length;j++)
+			{
+				if (j%2==0)
+				{
+					str+=tmpCol[j]+",";
+				}
+			}
+			if (str!="")
+			{
+				order_stmt.add(str.substring(0,str.length()-1));
+			}
+			
+			//3
+			str="";
+			for (int j=1;j < tmpCol.length;j++)
+			{
+				if (j%2==0)
+				{
+					str+=tmpCol[j]+",";
+				}
+			}
+			if (str!="")
+			{
+				order_stmt.add(str.substring(0,str.length()-1));
+			}
+			for (int k=0;k<order_stmt.size();k++)
+			{
+				SelectGroupOrderRel sgo= new SelectGroupOrderRel();
+				sgo.grouby_stmt=tmpArrayList.get(i).grouby_stmt;
+				sgo.orderby_stmt=order_stmt.get(k);
+				sgo.selct_stmt=tmpArrayList.get(i).selct_stmt;
+				groupbyList.add(sgo);
+			}
+		}
+	
+
+		return groupbyList;
+	}
+	
+	
+	
+	
+	
+	
 	
 }

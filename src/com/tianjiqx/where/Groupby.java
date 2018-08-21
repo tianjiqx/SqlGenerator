@@ -41,7 +41,7 @@ public class Groupby {
 				}
 			}
 		}
-		// 3±í
+		// 3è¡¨
 		if (tables.length > 2) {
 			ArrayList<String> list2 = StringCombine.threeConbine(chs);
 			for (int i = 0; i < list2.size(); i++) {
@@ -52,7 +52,7 @@ public class Groupby {
 				for (int j = 0; j < l1.size(); j++) {
 					for (int k = 0; k < l2.size(); k++) {
 						for (int l = 0; l < l3.size(); l++) {
-							str = l1.get(j) + "," + l2.get(k) + l3.get(l);
+							str = l1.get(j) + "," + l2.get(k) +"," + l3.get(l);
 							list.add(str);
 						}
 
@@ -83,7 +83,7 @@ public class Groupby {
 			}
 			list.addAll(list3);
 		}
-		ArrayList<String> tmp = new ArrayList<>();
+		ArrayList<String> tmp = new ArrayList<String>();
 		for (int j=0;j<list.size();j++)
 		{
 			tmp.add("Group by "+ list.get(j)+" ");

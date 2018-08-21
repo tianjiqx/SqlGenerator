@@ -1,18 +1,18 @@
-package com.tianjiqx.where;
+ï»¿package com.tianjiqx.where;
 
 import java.nio.DoubleBuffer;
 
 public interface Expr {
 
-	//´æÔÚµÄ³£Á¿
+	//å­˜åœ¨çš„å¸¸é‡
 	static int [] const_int = {1,2};
-	static String [] const_bool={"true","false"};
-	static double [] const_double={1.0,3.14};
+	static String [] const_bool={"1","2"};
+	static double [] const_double={210.55,1233.55};
 	static String [] const_string = {"abc","def"};
 	static String [] const_date={"2016-08-09","2017-09-10"};
 	static String [] const_time={"08:22:09","20:09:10"};
 	static String [] const_decimal={"77777","88888"};
-	//²»´æÔÚµÄ³£Á¿
+	//ä¸å­˜åœ¨çš„å¸¸é‡
 	static int  not_const_int = 99999;
 	static double  not_const_double=44.4;
 	static String  not_const_string = "def";

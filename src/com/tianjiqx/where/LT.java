@@ -1,4 +1,4 @@
-package com.tianjiqx.where;
+ï»¿package com.tianjiqx.where;
 
 import java.util.ArrayList;
 
@@ -6,9 +6,9 @@ import com.tianjiqx.table.Column;
 import com.tianjiqx.table.Table;
 
 //#################################
-//# Ä£¿éËµÃ÷£º
-//# ¹¦ÄÜ£ºÉú³ÉĞ¡ÓÚ±í´ïÊ½
-//# ×÷Õß£ºquxing
+//# æ¨¡å—è¯´æ˜ï¼š
+//# åŠŸèƒ½ï¼šç”Ÿæˆå°äºè¡¨è¾¾å¼
+//# ä½œè€…ï¼šquxing
 //# email: tianjiqx@126.com
 //#################################
 public class LT implements  Expr {
@@ -87,7 +87,7 @@ public class LT implements  Expr {
 			}
 			
 		}
-		
+		System.out.println("generateLt "+table.tableName +" sql num="+list.size());
 		return list;
 	}
 	

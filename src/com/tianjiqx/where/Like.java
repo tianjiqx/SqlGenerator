@@ -1,4 +1,4 @@
-package com.tianjiqx.where;
+ï»¿package com.tianjiqx.where;
 
 import java.util.ArrayList;
 
@@ -6,9 +6,9 @@ import com.tianjiqx.table.Column;
 import com.tianjiqx.table.Table;
 
 //#################################
-//# Ä£¿éËµÃ÷£º
-//# ¹¦ÄÜ£ºÉú³Élike±í´ïÊ½
-//# ×÷Õß£ºquxing
+//# æ¨¡å—è¯´æ˜ï¼š
+//# åŠŸèƒ½ï¼šç”Ÿæˆlikeè¡¨è¾¾å¼
+//# ä½œè€…ï¼šquxing
 //# email: tianjiqx@126.com
 //#################################
 public class Like implements Expr {
@@ -37,7 +37,7 @@ public class Like implements Expr {
 			}
 
 		}
-
+		System.out.println("generateLike "+table.tableName +" sql num="+list.size());
 		return list;
 	}
 }

@@ -1,4 +1,4 @@
-package com.tianjiqx.where;
+﻿package com.tianjiqx.where;
 
 import java.util.ArrayList;
 
@@ -73,7 +73,7 @@ public class LE implements Expr{
 			}
 			
 		}
-		
+		System.out.println("generateLe "+table.tableName +" sql num="+list.size());
 		return list;
 	}
 	

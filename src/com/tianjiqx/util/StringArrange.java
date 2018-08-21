@@ -1,12 +1,12 @@
-package com.tianjiqx.util;
+ï»¿package com.tianjiqx.util;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 //#################################
-//# ³ÌĞòËµÃ÷£º
-//# ¹¦ÄÜ£º×Ö·û´®È«ÅÅÁĞ
-//# ×÷Õß£ºquxing
+//# ç¨‹åºè¯´æ˜ï¼š
+//# åŠŸèƒ½ï¼šå­—ç¬¦ä¸²å…¨æ’åˆ—
+//# ä½œè€…ï¼šquxing
 //# email: tianjiqx@126.com
 //#################################
 
@@ -20,34 +20,35 @@ public class StringArrange {
 		ArrayList<String> list = new ArrayList<String>();  
 		char[] pStr = str.toCharArray();  
 
-		Permutation(pStr, 0, list);  
+		Permutation(pStr, 0, list); 
+		System.out.println("Permutation num:"+list.size());
 		Collections.sort(list);  
 		return list;  
 	}  
 
 	static void Permutation(char[] str, int i, ArrayList<String> list)  
 	{  
-		// Èç¹ûÎª¿Õ  
+		// å¦‚æœä¸ºç©º  
 		if (str == null){
 			return;  
 		}
-		// Èç¹ûiÖ¸ÏòÁË×îºóÒ»¸ö×Ö·û  
+		// å¦‚æœiæŒ‡å‘äº†æœ€åä¸€ä¸ªå­—ç¬¦  
 		if (i == str.length - 1)  
 		{  
 			if (list.contains(String.valueOf(str)))
 				return;
 			list.add(String.valueOf(str));
 		} else{  
-			// iÖ¸Ïòµ±Ç°ÎÒÃÇ×öÅÅÁĞ²Ù×÷µÄ×Ö·û´®µÄµÚÒ»¸ö×Ö·û  
+			// iæŒ‡å‘å½“å‰æˆ‘ä»¬åšæ’åˆ—æ“ä½œçš„å­—ç¬¦ä¸²çš„ç¬¬ä¸€ä¸ªå­—ç¬¦  
 			for (int j = i; j < str.length; j++)  
 			{  
-				// °Ñ×öÅÅÁĞ²Ù×÷µÄ×Ö·û´®µÄµÚÒ»¸ö×Ö·ûºÍºóÃæµÄËùÓĞ×Ö·û½»»»  
+				// æŠŠåšæ’åˆ—æ“ä½œçš„å­—ç¬¦ä¸²çš„ç¬¬ä¸€ä¸ªå­—ç¬¦å’Œåé¢çš„æ‰€æœ‰å­—ç¬¦äº¤æ¢  
 				char temp = str[j];  
 				str[j] = str[i];  
 				str[i] = temp;  
-				// ½»»»ºó¶ÔiºóÃæµÄ×Ö·û´®µİ¹é×öÅÅÁĞ²Ù×÷  
+				// äº¤æ¢åå¯¹iåé¢çš„å­—ç¬¦ä¸²é€’å½’åšæ’åˆ—æ“ä½œ  
 				Permutation(str, i + 1, list);  
-				// Ã¿Ò»ÂÖ½áÊøºó»»»ØÀ´½øĞĞÏÂÒ»ÂÖÅÅÁĞ²Ù×÷  
+				// æ¯ä¸€è½®ç»“æŸåæ¢å›æ¥è¿›è¡Œä¸‹ä¸€è½®æ’åˆ—æ“ä½œ  
 				temp = str[j];  
 				str[j] = str[i];  
 				str[i] = temp;  

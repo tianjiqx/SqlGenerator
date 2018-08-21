@@ -1,11 +1,11 @@
-package com.tianjiqx.where;
+ï»¿package com.tianjiqx.where;
 
 import java.util.ArrayList;
 
 //#################################
-//# Ä£¿éËµÃ÷£º
-//# ¹¦ÄÜ£ºÉú³É£¡±í´ïÊ½
-//# ×÷Õß£ºquxing
+//# æ¨¡å—è¯´æ˜ï¼š
+//# åŠŸèƒ½ï¼šç”Ÿæˆï¼è¡¨è¾¾å¼
+//# ä½œè€…ï¼šquxing
 //# email: tianjiqx@126.com
 //#################################
 public class Not implements Expr{

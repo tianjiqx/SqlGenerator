@@ -1,4 +1,4 @@
-package com.tianjiqx.where;
+ï»¿package com.tianjiqx.where;
 
 import java.util.ArrayList;
 
@@ -6,9 +6,9 @@ import com.tianjiqx.table.Column;
 import com.tianjiqx.table.Table;
 
 //#################################
-//# Ä£¿éËµÃ÷£º
-//# ¹¦ÄÜ£ºÉú³Éin±í´ïÊ½
-//# ×÷Õß£ºquxing
+//# æ¨¡å—è¯´æ˜ï¼š
+//# åŠŸèƒ½ï¼šç”Ÿæˆinè¡¨è¾¾å¼
+//# ä½œè€…ï¼šquxing
 //# email: tianjiqx@126.com
 //#################################
 public class In  implements  Expr {
@@ -34,7 +34,7 @@ public class In  implements  Expr {
 			case Column.CBOOL:
 				for (int j=0;j<const_bool.length;j++)
 				{
-					str +=  const_bool[j]+',';
+					str += "'"+ const_bool[j]+"'"+',';
 				}
 				str=table.aliasName+"."+table.whereCols[i].colName+" in (" +str.substring(0, str.length()-1)+")";
 				list.add(str);
@@ -95,6 +95,7 @@ public class In  implements  Expr {
 			
 		}
 		
+		System.out.println("generateIn "+table.tableName +" sql num="+list.size());
 		return list;
 	}
 	

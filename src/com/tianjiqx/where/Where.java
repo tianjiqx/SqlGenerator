@@ -1,4 +1,4 @@
-package com.tianjiqx.where;
+ï»¿package com.tianjiqx.where;
 
 import java.util.ArrayList;
 
@@ -7,9 +7,9 @@ import javax.naming.InitialContext;
 import com.tianjiqx.table.Table;
 
 //#################################
-//# Ä£¿éËµÃ÷£º
-//# ¹¦ÄÜ£ºÉú³Éwhere±í´ïÊ½
-//# ×÷Õß£ºquxing
+//# æ¨¡å—è¯´æ˜ï¼š
+//# åŠŸèƒ½ï¼šç”Ÿæˆwhereè¡¨è¾¾å¼
+//# ä½œè€…ï¼šquxing
 //# email: tianjiqx@126.com
 //#################################
 
@@ -44,33 +44,49 @@ public class Where {
 			
 			//btw
 			
-			//and 
-			andeqList.addAll(eqList);
-			andltList.addAll(ltList);
-			andinList.addAll(inList);
+			ArrayList<String> singleExpr = new ArrayList<String>();
 			
-			andeqList.addAll(And.generateTwoAnd(eqList));
-			//System.out.println("andeq count="+andeqList.size());
-			andltList.addAll(And.generateTwoAnd(ltList));
-			//System.out.println("andlt count="+andltList.size());
-			andinList.addAll(And.generateTwoAnd(inList));
-			//System.out.println("andin count="+andinList.size());
+			
+			// å•æ¡ä»¶
+			singleExpr.addAll(eqList);
+			singleExpr.addAll(ltList);
+			singleExpr.addAll(inList);
+			System.out.println("generateWhere "+tables[i].tableName+" singleExpr num="+singleExpr.size());
+			
+			list.addAll(singleExpr);
+			
+			//and 
+			
+			ArrayList<String> andArrayList = And.generateTwoAnd(singleExpr);
+			
+			// andæ¡ä»¶
+			list.addAll(andArrayList);
 			
 			
 			//or
-			eqList.addAll(OR.generateOr(andeqList));
-			//System.out.println("eq count="+eqList.size());
-			ltList.addAll(OR.generateOr(andltList));
-			//System.out.println("lt count="+ltList.size());
-			inList.addAll(OR.generateOr(andinList));
-			//System.out.println("in count="+inList.size());
 			
-			list.addAll(eqList);
-			list.addAll(ltList);
-			list.addAll(inList);
+//			andeqList.addAll(And.generateTwoAnd(eqList));
+//			//System.out.println("andeq count="+andeqList.size());
+//			andltList.addAll(And.generateTwoAnd(ltList));
+//			//System.out.println("andlt count="+andltList.size());
+//			andinList.addAll(And.generateTwoAnd(inList));
+//			//System.out.println("andin count="+andinList.size());
+			
+//			eqList.addAll(OR.generateOr(andeqList));
+//			//System.out.println("eq count="+eqList.size());
+//			ltList.addAll(OR.generateOr(andltList));
+//			//System.out.println("lt count="+ltList.size());
+//			inList.addAll(OR.generateOr(andinList));
+//			//System.out.println("in count="+inList.size());
+			
+			ArrayList<String> orArrayList = OR.generateOr(list);
+			
+			list.addAll(orArrayList);
+			
 			
 		}
 		
+		System.out.println("generateWhere sql num="+list.size());
 		
 		
 		return list;
